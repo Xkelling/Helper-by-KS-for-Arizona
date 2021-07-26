@@ -83,9 +83,6 @@ function main()
 
 		autoupdate("https://raw.githubusercontent.com/Xkelling/Helper-by-KS-for-Arizona/main/update.ini", '['..string.upper(thisScript().name)..'] ', 'https://www.blast.hk/threads/94823')
 
-		_, id = sampGetPlayerIdByCharHandle(PLAYER_PED)
-		nick = sampGetPlayerNickname(id)
-
 		sampRegisterChatCommand('calc', calc)
 
 		sampRegisterChatCommand('hk', function()
@@ -299,6 +296,10 @@ end
 
 
 function sampev.onServerMessage(color, text)
+
+	_, id = sampGetPlayerIdByCharHandle(PLAYER_PED)
+	nick = sampGetPlayerNickname(id)
+
 	if text:find('{F345FC}%[.+%] {FFFFFF}'..nick..'%[%d+%]: .+') then
 		vremya = true
 		time2 = os.time()
