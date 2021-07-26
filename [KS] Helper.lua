@@ -100,7 +100,7 @@ function main()
 				if settings.v then
 						imgui.ShowCursor = true
 						imgui.Process = true
-				elseif taxi.v or window.v then
+				elseif window.v then
 						imgui.ShowCursor = false
 						imgui.Process = true
 				else
