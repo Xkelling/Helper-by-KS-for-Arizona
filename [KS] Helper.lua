@@ -1,7 +1,7 @@
 script_name    		('Helper KerSoft')
 script_properties	("work-in-pause")
 script_author  		('Rice')
-script_version		('1.1')
+script_version		('1.11')
 
 
 -- Lib --
@@ -48,11 +48,13 @@ local cfg = inicfg.load({
 			replaceVipTag = false,
 			VipTag = u8'Тэг',
 			ColorTag = '{FF0000}'
+	},
+	CasinoAndBar = {
+		casino = false
 	}
 }, "Helper KerSoft")
 
 
--- Local --
 		local window = imgui.ImBool(false)
 		local settings = imgui.ImBool(false)
 		local timer = imgui.ImBool(cfg.TimerVipChat.timer)
@@ -63,6 +65,8 @@ local cfg = inicfg.load({
 		local VipTag = imgui.ImBuffer(cfg.MessageHook.VipTag,256)
 		local ColorTag = imgui.ImBuffer(cfg.MessageHook.ColorTag,256)
 
+		local casino = imgui.ImBool(cfg.CasinoAndBar.casino)
+
 		local vremya = false
 		local time = 0
 		local time2 = 0
@@ -70,7 +74,7 @@ local cfg = inicfg.load({
 		local tag = '{289008}[Helper KerSoft] {FFFFFF}'
 		local mc = 0x228B22
 
--- Function Main --
+
 function main()
 	if not isSampfuncsLoaded() or not isSampLoaded() then return end
 	while not isSampAvailable() do wait(100) end
@@ -195,6 +199,9 @@ function imgui.OnDrawFrame()
 				imgui.BeginChild("##ChildTimer", imgui.ImVec2(400, 50), true)
 			end
 			imgui.Text(fa.ICON_FA_COMMENTS.. u8' Таймер последнего сообщения в /vr')
+			imgui.SameLine()
+			imgui.Text(fa.ICON_FA_QUESTION_CIRCLE)
+			imgui.Hint(u8'В окне будет показываться кол-во секунд после последнего сообщения в Вип-Чат.')
 			if imadd.ToggleButton(u8'Включить##timer', timer) then
 				cfg.TimerVipChat.timer = timer.v
 				inicfg.save(cfg, 'Helper KerSoft.ini')
@@ -232,7 +239,8 @@ function imgui.OnDrawFrame()
 			imgui.BeginChild("##ChildHook", imgui.ImVec2(400, 50), true)
 			imgui.Text(fa.ICON_FA_NEWSPAPER.. u8' Замена объявлений в чате')
 			imgui.SameLine()
-			imgui.TextQuestion(u8'[Пример]\n\nВключено:\nAD: Куплю в/c "Горный". Бюджет: Свободный. Отправил: Yuki_Rice[111] Тел. 1234567\n\nВыключено:\nОбъявление: Куплю в/c "Горный". Бюджет: Свободный. Отправил: Yuki_Rice[111] Тел. 1234567\nОтредактировал сотрудник СМИ [ LS ] : Yuki_Rice[111]')
+			imgui.Text(fa.ICON_FA_QUESTION_CIRCLE)
+			imgui.Hint(u8'[Пример]\n\nВключено:\nAD: Куплю в/c "Горный". Бюджет: Свободный. Отправил: Yuki_Rice[111] Тел. 1234567\n\nВыключено:\nОбъявление: Куплю в/c "Горный". Бюджет: Свободный. Отправил: Yuki_Rice[111] Тел. 1234567\nОтредактировал сотрудник СМИ [ LS ] : Yuki_Rice[111]')
 			if imadd.ToggleButton(u8'Включить##replaceAdd', replaceAdd) then
 				cfg.MessageHook.replaceAdd = replaceAdd.v
 				inicfg.save(cfg, 'Helper KerSoft.ini')
@@ -247,7 +255,10 @@ function imgui.OnDrawFrame()
 				else
 				imgui.BeginChild("##ChildHook2", imgui.ImVec2(400, 50), true)
 			end
-			imgui.Text(fa.ICON_FA_COMMENT_DOTS.. u8' Личный тэг в /vr (визуально)')
+			imgui.Text(fa.ICON_FA_COMMENT_DOTS.. u8' Личный тэг в /vr')
+			imgui.SameLine()
+			imgui.Text(fa.ICON_FA_QUESTION_CIRCLE)
+			imgui.Hint(u8'[Пример]\n\nВключено:\n[Ловец] Yuki_Rice[111]: Текст\n\nВыключено:\n[PREMIUM] Yuki_Rice[111]: Текст')
 			if imadd.ToggleButton(u8'Включить##replaceVipTag', replaceVipTag) then
 				cfg.MessageHook.replaceVipTag = replaceVipTag.v
 				inicfg.save(cfg, 'Helper KerSoft.ini')
@@ -272,8 +283,27 @@ function imgui.OnDrawFrame()
 			if replaceVipTag.v == true then
 				imgui.Link('https://colorscheme.ru/html-colors.html',fa.ICON_FA_INFO_CIRCLE..(u8' Основные HEX цвета ')..fa.ICON_FA_INFO_CIRCLE)
 			end
-
 			imgui.EndChild()
+
+
+				imgui.BeginChild("##CasinoAndBar", imgui.ImVec2(400, 50), true)
+
+				imgui.Text(fa.ICON_FA_DOLLAR_SIGN..u8' Анти-Казино')
+
+				imgui.SameLine()
+
+				imgui.Text(fa.ICON_FA_QUESTION_CIRCLE)
+
+				imgui.Hint(u8'Скрипт не будет позволять открыть диалог с покупкой фишек.')
+
+				if imadd.ToggleButton(u8'Включить##casino', casino) then
+					cfg.CasinoAndBar.casino = casino.v
+					inicfg.save(cfg, 'Helper KerSoft.ini')
+				end
+				imgui.SameLine()
+				imgui.Text(u8(casino.v and 'Включено' or 'Выключено'))
+
+				imgui.EndChild()
 
 			imgui.End()
 		end
@@ -291,7 +321,6 @@ function imgui.OnDrawFrame()
 
 			imgui.End()
 		end
-
 end
 
 
@@ -300,7 +329,7 @@ function sampev.onServerMessage(color, text)
 	_, id = sampGetPlayerIdByCharHandle(PLAYER_PED)
 	nick = sampGetPlayerNickname(id)
 
-	if text:find('{F345FC}%[.+%] {FFFFFF}'..nick..'%[%d+%]: .+') then
+	if text:find('{......}%[.+%] {......}'..nick..'%[%d+%]: .+') then
 		vremya = true
 		time2 = os.time()
 	end
@@ -323,6 +352,16 @@ function sampev.onServerMessage(color, text)
 end
 
 
+function sampev.onShowDialog(dialogId, style, title, button1, button2, text)
+
+	if dialogId == 8001 and text:find('Введите количество') and casino.v then
+		sampAddChatMessage(tag..'Диалог с покупкой фишек был заблокирован, потому-что включена функция "Анти-Казино".', mc)
+		return false
+	end
+
+end
+
+
 function imgui.Hint(text, delay, action)
     if imgui.IsItemHovered() then
         if go_hint == nil then go_hint = os.clock() + (delay and delay or 0.0) end
@@ -332,7 +371,7 @@ function imgui.Hint(text, delay, action)
 		    imgui.PushStyleVar(imgui.StyleVar.Alpha, (alpha <= 1.0 and alpha or 1.0))
 		        imgui.PushStyleColor(imgui.Col.PopupBg, imgui.GetStyle().Colors[imgui.Col.PopupBg])
 		            imgui.BeginTooltip()
-		            imgui.PushTextWrapPos(450)
+		            imgui.PushTextWrapPos(700)
 		            imgui.TextColored(imgui.GetStyle().Colors[imgui.Col.ButtonActive], fa.ICON_FA_INFO_CIRCLE..u8' Подсказка:')
 		            imgui.TextUnformatted(text)
 		            if action ~= nil then
@@ -375,18 +414,6 @@ function imgui.Link(link,name,myfunc)
 						imgui.TextColored(imgui.GetStyle().Colors[imgui.Col.Text], name)
 				end
 				return resultBtn
-end
-
-
-function imgui.TextQuestion(text)
-	imgui.TextDisabled(fa.ICON_FA_QUESTION_CIRCLE)
-	if imgui.IsItemHovered() then
-		imgui.BeginTooltip()
-		imgui.PushTextWrapPos(600)
-		imgui.TextUnformatted(text)
-		imgui.PopTextWrapPos()
-		imgui.EndTooltip()
-	end
 end
 
 
