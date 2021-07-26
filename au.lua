@@ -9,7 +9,7 @@ function main()
 	while not isSampAvailable() do wait(100) end
 
 sampAddChatMessage(tag..'AUTO-UPDATE', mc)
-autoupdate("https://raw.githubusercontent.com/Xkelling/Admin-Scripts/main/upate.ini", '['..string.upper(thisScript().name)..'] ', 'https://www.blast.hk/threads/94823')
+autoupdate("https://raw.githubusercontent.com/Xkelling/Helper-by-KS-for-Arizona/main/update.ini", '['..string.upper(thisScript().name)..'] ', 'https://www.blast.hk/threads/94823')
 sampRegisterChatCommand('cmd', function()
 sampAddChatMessage(tag..'Версия: '..thisScript().version, mc)
 end)
