@@ -1,4 +1,4 @@
-script_name    		('Helper KerSoft')
+script_name    		('Helper KerSoft v1.2')
 script_properties	("work-in-pause")
 script_author  		('Rice')
 script_version		('1.1')
@@ -46,7 +46,7 @@ local cfg = inicfg.load({
 	MessageHook = {
 			replaceAdd = false,
 			replaceVipTag = false,
-			VipTag = u8'Òýã',
+			VipTag = u8'Ã’Ã½Ã£',
 			ColorTag = '{FF0000}'
 	}
 }, "Helper KerSoft")
@@ -78,7 +78,7 @@ function main()
 		imgui.Process = false
 
 		if not doesFileExist('moonloader/config/Helper KerSoft.ini') then
-			if inicfg.save(cfg, 'Helper KerSoft.ini') then sampAddChatMessage(tag..'Ñîçäàí ôàéë êîíôèãóðàöèè: Helper KerSoft.ini', mc)
+			if inicfg.save(cfg, 'Helper KerSoft.ini') then sampAddChatMessage(tag..'Ã‘Ã®Ã§Ã¤Ã Ã­ Ã´Ã Ã©Ã« ÃªÃ®Ã­Ã´Ã¨Ã£Ã³Ã°Ã Ã¶Ã¨Ã¨: Helper KerSoft.ini', mc)
 		end end
 
 		autoupdate("https://raw.githubusercontent.com/Xkelling/Helper-by-KS-for-Arizona/main/update.ini", '['..string.upper(thisScript().name)..'] ', 'https://www.blast.hk/threads/94823')
@@ -133,21 +133,21 @@ function autoupdate(json_url, tag, url)
             if updateversion ~= thisScript().version then
               lua_thread.create(function(tag)
                 local dlstatus = require('moonloader').download_status
-                sampAddChatMessage(('['..thisScript().name..'] {FFFFFF}Îáíàðóæåíî îáíîâëåíèå. Ïûòàþñü îáíîâèòüñÿ c '..thisScript().version..' íà '..updateversion), mc)
+                sampAddChatMessage(('['..thisScript().name..'] {FFFFFF}ÃŽÃ¡Ã­Ã Ã°Ã³Ã¦Ã¥Ã­Ã® Ã®Ã¡Ã­Ã®Ã¢Ã«Ã¥Ã­Ã¨Ã¥. ÃÃ»Ã²Ã Ã¾Ã±Ã¼ Ã®Ã¡Ã­Ã®Ã¢Ã¨Ã²Ã¼Ã±Ã¿ c '..thisScript().version..' Ã­Ã  '..updateversion), mc)
                 wait(250)
                 downloadUrlToFile(updatelink, thisScript().path,
                   function(id3, status1, p13, p23)
                     if status1 == dlstatus.STATUS_DOWNLOADINGDATA then
-                      print(string.format('Çàãðóæåíî %d èç %d.', p13, p23))
+                      print(string.format('Ã‡Ã Ã£Ã°Ã³Ã¦Ã¥Ã­Ã® %d Ã¨Ã§ %d.', p13, p23))
                     elseif status1 == dlstatus.STATUS_ENDDOWNLOADDATA then
-                      print('Çàãðóçêà îáíîâëåíèÿ çàâåðøåíà.')
-                      sampAddChatMessage(('['..thisScript().name..'] {FFFFFF}Îáíîâëåíèå çàâåðøåíî! Ïåðåçàãðóæàþ ñêðèïò.'), mc)
+                      print('Ã‡Ã Ã£Ã°Ã³Ã§ÃªÃ  Ã®Ã¡Ã­Ã®Ã¢Ã«Ã¥Ã­Ã¨Ã¿ Ã§Ã Ã¢Ã¥Ã°Ã¸Ã¥Ã­Ã .')
+                      sampAddChatMessage(('['..thisScript().name..'] {FFFFFF}ÃŽÃ¡Ã­Ã®Ã¢Ã«Ã¥Ã­Ã¨Ã¥ Ã§Ã Ã¢Ã¥Ã°Ã¸Ã¥Ã­Ã®! ÃÃ¥Ã°Ã¥Ã§Ã Ã£Ã°Ã³Ã¦Ã Ã¾ Ã±ÃªÃ°Ã¨Ã¯Ã².'), mc)
                       goupdatestatus = true
                       lua_thread.create(function() wait(500) thisScript():reload() end)
                     end
                     if status1 == dlstatus.STATUSEX_ENDDOWNLOAD then
                       if goupdatestatus == nil then
-                        sampAddChatMessage(('['..thisScript().name..'] {FFFFFF}Îáíîâëåíèå ïðîøëî íåóäà÷íî. Çàïóñêàþ óñòàðåâøóþ âåðñèþ..'), mc)
+                        sampAddChatMessage(('['..thisScript().name..'] {FFFFFF}ÃŽÃ¡Ã­Ã®Ã¢Ã«Ã¥Ã­Ã¨Ã¥ Ã¯Ã°Ã®Ã¸Ã«Ã® Ã­Ã¥Ã³Ã¤Ã Ã·Ã­Ã®. Ã‡Ã Ã¯Ã³Ã±ÃªÃ Ã¾ Ã³Ã±Ã²Ã Ã°Ã¥Ã¢Ã¸Ã³Ã¾ Ã¢Ã¥Ã°Ã±Ã¨Ã¾..'), mc)
                         update = false
                       end
                     end
@@ -157,14 +157,14 @@ function autoupdate(json_url, tag, url)
               )
             else
               update = false
-							sampAddChatMessage('['..thisScript().name..'] {FFFFFF}Çàïóùåí! Àêòèâàöèÿ - /hk', mc)
-              print('v'..thisScript().version..': Îáíîâëåíèå íå òðåáóåòñÿ.')
+							sampAddChatMessage('['..thisScript().name..'] {FFFFFF}Ã‡Ã Ã¯Ã³Ã¹Ã¥Ã­! Ã€ÃªÃ²Ã¨Ã¢Ã Ã¶Ã¨Ã¿ - /hk', mc)
+              print('v'..thisScript().version..': ÃŽÃ¡Ã­Ã®Ã¢Ã«Ã¥Ã­Ã¨Ã¥ Ã­Ã¥ Ã²Ã°Ã¥Ã¡Ã³Ã¥Ã²Ã±Ã¿.')
             end
           end
         else
-          sampAddChatMessage('['..thisScript().name..'] {FFFFFF}Íå ìîãó ïðîâåðèòü îáíîâëåíèå. Ïðîâåðüòå îáíîâëåíèå â òåìå íà BlastHack: '..url, mc)
-					sampAddChatMessage('['..thisScript().name..'] {FFFFFF}Ññûëêà íà òåìó BlastHack ïðîäóáëèðîâàíà â êîíñîëè SF', mc)
-					  print('v'..thisScript().version..': Ññûëêà íà òåìó BlastHack: '..url)
+          sampAddChatMessage('['..thisScript().name..'] {FFFFFF}ÃÃ¥ Ã¬Ã®Ã£Ã³ Ã¯Ã°Ã®Ã¢Ã¥Ã°Ã¨Ã²Ã¼ Ã®Ã¡Ã­Ã®Ã¢Ã«Ã¥Ã­Ã¨Ã¥. ÃÃ°Ã®Ã¢Ã¥Ã°Ã¼Ã²Ã¥ Ã®Ã¡Ã­Ã®Ã¢Ã«Ã¥Ã­Ã¨Ã¥ Ã¢ Ã²Ã¥Ã¬Ã¥ Ã­Ã  BlastHack: '..url, mc)
+					sampAddChatMessage('['..thisScript().name..'] {FFFFFF}Ã‘Ã±Ã»Ã«ÃªÃ  Ã­Ã  Ã²Ã¥Ã¬Ã³ BlastHack Ã¯Ã°Ã®Ã¤Ã³Ã¡Ã«Ã¨Ã°Ã®Ã¢Ã Ã­Ã  Ã¢ ÃªÃ®Ã­Ã±Ã®Ã«Ã¨ SF', mc)
+					  print('v'..thisScript().version..': Ã‘Ã±Ã»Ã«ÃªÃ  Ã­Ã  Ã²Ã¥Ã¬Ã³ BlastHack: '..url)
           update = false
         end
       end
@@ -197,21 +197,21 @@ function imgui.OnDrawFrame()
 				else
 				imgui.BeginChild("##ChildTimer", imgui.ImVec2(400, 50), true)
 			end
-			imgui.Text(fa.ICON_FA_COMMENTS.. u8' Òàéìåð ïîñëåäíåãî ñîîáùåíèÿ â /vr')
-			if imadd.ToggleButton(u8'Âêëþ÷èòü##timer', timer) then
+			imgui.Text(fa.ICON_FA_COMMENTS.. u8' Ã’Ã Ã©Ã¬Ã¥Ã° Ã¯Ã®Ã±Ã«Ã¥Ã¤Ã­Ã¥Ã£Ã® Ã±Ã®Ã®Ã¡Ã¹Ã¥Ã­Ã¨Ã¿ Ã¢ /vr')
+			if imadd.ToggleButton(u8'Ã‚ÃªÃ«Ã¾Ã·Ã¨Ã²Ã¼##timer', timer) then
 				cfg.TimerVipChat.timer = timer.v
 				inicfg.save(cfg, 'Helper KerSoft.ini')
 			end
 			imgui.SameLine()
-			imgui.Text(u8(timer.v and 'Âêëþ÷åíî' or 'Âûêëþ÷åíî'))
+			imgui.Text(u8(timer.v and 'Ã‚ÃªÃ«Ã¾Ã·Ã¥Ã­Ã®' or 'Ã‚Ã»ÃªÃ«Ã¾Ã·Ã¥Ã­Ã®'))
 			if timer.v == true then
-				if imgui.Button(u8'Ìåñòîïîëîæåíèå', imgui.ImVec2(200, 20)) then
+				if imgui.Button(u8'ÃŒÃ¥Ã±Ã²Ã®Ã¯Ã®Ã«Ã®Ã¦Ã¥Ã­Ã¨Ã¥', imgui.ImVec2(200, 20)) then
 				lua_thread.create(function ()
 						showCursor(true, true)
 						checkCursor = true
 						settings.v = false
 						sampSetCursorMode(4)
-					sampAddChatMessage(tag..'Íàæìèòå {289008}ÏÐÎÁÅË{FFFFFF} ÷òî-áû ñîõðàíèòü ïîçèöèþ', mc)
+					sampAddChatMessage(tag..'ÃÃ Ã¦Ã¬Ã¨Ã²Ã¥ {289008}ÃÃÃŽÃÃ…Ã‹{FFFFFF} Ã·Ã²Ã®-Ã¡Ã» Ã±Ã®ÃµÃ°Ã Ã­Ã¨Ã²Ã¼ Ã¯Ã®Ã§Ã¨Ã¶Ã¨Ã¾', mc)
 						while checkCursor do
 								local cX, cY = getCursorPos()
 								posX, posY = cX, cY
@@ -221,27 +221,27 @@ function imgui.OnDrawFrame()
 										settings.v = true
 										checkCursor = false
 										showCursor(false, false)
-										if inicfg.save(cfg, 'Helper KerSoft.ini') then sampAddChatMessage(tag..'Ïîçèöèÿ ñîõðàíåíà!', mc) end
+										if inicfg.save(cfg, 'Helper KerSoft.ini') then sampAddChatMessage(tag..'ÃÃ®Ã§Ã¨Ã¶Ã¨Ã¿ Ã±Ã®ÃµÃ°Ã Ã­Ã¥Ã­Ã !', mc) end
 								end
 								wait(0)
 						end
 				end)
 				end
-				imgui.Hint(u8'Ìåñòîïîëîæåíèå òàéìåðà (ìåñòîïîëîæåíèå ñîõðàíÿåòñÿ ïîñëå ïåðåçàõîäà)')
+				imgui.Hint(u8'ÃŒÃ¥Ã±Ã²Ã®Ã¯Ã®Ã«Ã®Ã¦Ã¥Ã­Ã¨Ã¥ Ã²Ã Ã©Ã¬Ã¥Ã°Ã  (Ã¬Ã¥Ã±Ã²Ã®Ã¯Ã®Ã«Ã®Ã¦Ã¥Ã­Ã¨Ã¥ Ã±Ã®ÃµÃ°Ã Ã­Ã¿Ã¥Ã²Ã±Ã¿ Ã¯Ã®Ã±Ã«Ã¥ Ã¯Ã¥Ã°Ã¥Ã§Ã ÃµÃ®Ã¤Ã )')
 			end
 			imgui.EndChild()
 
 
 			imgui.BeginChild("##ChildHook", imgui.ImVec2(400, 50), true)
-			imgui.Text(fa.ICON_FA_NEWSPAPER.. u8' Çàìåíà îáúÿâëåíèé â ÷àòå')
+			imgui.Text(fa.ICON_FA_NEWSPAPER.. u8' Ã‡Ã Ã¬Ã¥Ã­Ã  Ã®Ã¡ÃºÃ¿Ã¢Ã«Ã¥Ã­Ã¨Ã© Ã¢ Ã·Ã Ã²Ã¥')
 			imgui.SameLine()
-			imgui.TextQuestion(u8'[Ïðèìåð]\n\nÂêëþ÷åíî:\nAD: Êóïëþ â/c "Ãîðíûé". Áþäæåò: Ñâîáîäíûé. Îòïðàâèë: Yuki_Rice[111] Òåë. 1234567\n\nÂûêëþ÷åíî:\nÎáúÿâëåíèå: Êóïëþ â/c "Ãîðíûé". Áþäæåò: Ñâîáîäíûé. Îòïðàâèë: Yuki_Rice[111] Òåë. 1234567\nÎòðåäàêòèðîâàë ñîòðóäíèê ÑÌÈ [ LS ] : Yuki_Rice[111]')
-			if imadd.ToggleButton(u8'Âêëþ÷èòü##replaceAdd', replaceAdd) then
+			imgui.TextQuestion(u8'[ÃÃ°Ã¨Ã¬Ã¥Ã°]\n\nÃ‚ÃªÃ«Ã¾Ã·Ã¥Ã­Ã®:\nAD: ÃŠÃ³Ã¯Ã«Ã¾ Ã¢/c "ÃƒÃ®Ã°Ã­Ã»Ã©". ÃÃ¾Ã¤Ã¦Ã¥Ã²: Ã‘Ã¢Ã®Ã¡Ã®Ã¤Ã­Ã»Ã©. ÃŽÃ²Ã¯Ã°Ã Ã¢Ã¨Ã«: Yuki_Rice[111] Ã’Ã¥Ã«. 1234567\n\nÃ‚Ã»ÃªÃ«Ã¾Ã·Ã¥Ã­Ã®:\nÃŽÃ¡ÃºÃ¿Ã¢Ã«Ã¥Ã­Ã¨Ã¥: ÃŠÃ³Ã¯Ã«Ã¾ Ã¢/c "ÃƒÃ®Ã°Ã­Ã»Ã©". ÃÃ¾Ã¤Ã¦Ã¥Ã²: Ã‘Ã¢Ã®Ã¡Ã®Ã¤Ã­Ã»Ã©. ÃŽÃ²Ã¯Ã°Ã Ã¢Ã¨Ã«: Yuki_Rice[111] Ã’Ã¥Ã«. 1234567\nÃŽÃ²Ã°Ã¥Ã¤Ã ÃªÃ²Ã¨Ã°Ã®Ã¢Ã Ã« Ã±Ã®Ã²Ã°Ã³Ã¤Ã­Ã¨Ãª Ã‘ÃŒÃˆ [ LS ] : Yuki_Rice[111]')
+			if imadd.ToggleButton(u8'Ã‚ÃªÃ«Ã¾Ã·Ã¨Ã²Ã¼##replaceAdd', replaceAdd) then
 				cfg.MessageHook.replaceAdd = replaceAdd.v
 				inicfg.save(cfg, 'Helper KerSoft.ini')
 			end
 			imgui.SameLine()
-			imgui.Text(u8(replaceAdd.v and 'Âêëþ÷åíî' or 'Âûêëþ÷åíî'))
+			imgui.Text(u8(replaceAdd.v and 'Ã‚ÃªÃ«Ã¾Ã·Ã¥Ã­Ã®' or 'Ã‚Ã»ÃªÃ«Ã¾Ã·Ã¥Ã­Ã®'))
 			imgui.EndChild()
 
 
@@ -250,30 +250,30 @@ function imgui.OnDrawFrame()
 				else
 				imgui.BeginChild("##ChildHook2", imgui.ImVec2(400, 50), true)
 			end
-			imgui.Text(fa.ICON_FA_COMMENT_DOTS.. u8' Ëè÷íûé òýã â /vr (âèçóàëüíî)')
-			if imadd.ToggleButton(u8'Âêëþ÷èòü##replaceVipTag', replaceVipTag) then
+			imgui.Text(fa.ICON_FA_COMMENT_DOTS.. u8' Ã‹Ã¨Ã·Ã­Ã»Ã© Ã²Ã½Ã£ Ã¢ /vr (Ã¢Ã¨Ã§Ã³Ã Ã«Ã¼Ã­Ã®)')
+			if imadd.ToggleButton(u8'Ã‚ÃªÃ«Ã¾Ã·Ã¨Ã²Ã¼##replaceVipTag', replaceVipTag) then
 				cfg.MessageHook.replaceVipTag = replaceVipTag.v
 				inicfg.save(cfg, 'Helper KerSoft.ini')
 			end
 			imgui.SameLine()
-			imgui.Text(u8(replaceVipTag.v and 'Âêëþ÷åíî' or 'Âûêëþ÷åíî'))
+			imgui.Text(u8(replaceVipTag.v and 'Ã‚ÃªÃ«Ã¾Ã·Ã¥Ã­Ã®' or 'Ã‚Ã»ÃªÃ«Ã¾Ã·Ã¥Ã­Ã®'))
 			if replaceVipTag.v == true then
-				if imgui.InputText(fa.ICON_FA_PENCIL_ALT..u8' Ââåäèòå Âàø òýã', VipTag) then
+				if imgui.InputText(fa.ICON_FA_PENCIL_ALT..u8' Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã‚Ã Ã¸ Ã²Ã½Ã£', VipTag) then
 					cfg.MessageHook.VipTag = VipTag.v
 					inicfg.save(cfg, 'Helper KerSoft.ini')
 			end end
 
 
 			if replaceVipTag.v == true then
-				if imgui.InputText(fa.ICON_FA_PAINT_ROLLER..u8' Öâåò òýãà', ColorTag) then
+				if imgui.InputText(fa.ICON_FA_PAINT_ROLLER..u8' Ã–Ã¢Ã¥Ã² Ã²Ã½Ã£Ã ', ColorTag) then
 					cfg.MessageHook.ColorTag = ColorTag.v
 					inicfg.save(cfg, 'Helper KerSoft.ini') end
 				imgui.SameLine()
-				imgui.TextQuestion(u8"Îáÿçàòåëüíî ââîäèòü öâåò â ôîðìàòå: {öâåò}\nÏðèìåð: {FFFFFF}")
+				imgui.TextQuestion(u8"ÃŽÃ¡Ã¿Ã§Ã Ã²Ã¥Ã«Ã¼Ã­Ã® Ã¢Ã¢Ã®Ã¤Ã¨Ã²Ã¼ Ã¶Ã¢Ã¥Ã² Ã¢ Ã´Ã®Ã°Ã¬Ã Ã²Ã¥: {Ã¶Ã¢Ã¥Ã²}\nÃÃ°Ã¨Ã¬Ã¥Ã°: {FFFFFF}")
 			end
 
 			if replaceVipTag.v == true then
-				imgui.Link('https://colorscheme.ru/html-colors.html',fa.ICON_FA_INFO_CIRCLE..(u8' Îñíîâíûå HEX öâåòà ')..fa.ICON_FA_INFO_CIRCLE)
+				imgui.Link('https://colorscheme.ru/html-colors.html',fa.ICON_FA_INFO_CIRCLE..(u8' ÃŽÃ±Ã­Ã®Ã¢Ã­Ã»Ã¥ HEX Ã¶Ã¢Ã¥Ã²Ã  ')..fa.ICON_FA_INFO_CIRCLE)
 			end
 
 			imgui.EndChild()
@@ -290,7 +290,7 @@ function imgui.OnDrawFrame()
 	        time = os.time() - time2
 	    end
 
-	    imgui.Text(u8"Òàéìåð: " ..time)
+	    imgui.Text(u8"Ã’Ã Ã©Ã¬Ã¥Ã°: " ..time)
 
 			imgui.End()
 		end
@@ -310,13 +310,13 @@ function sampev.onServerMessage(color, text)
 		return false
 	end
 
-	if replaceAdd.v == true and text:find('Îáúÿâëåíèå%: .+%. Îòïðàâèë%: .+%[%d+%] Òåë%. %d+') then
-		local Add = text:match('Îáúÿâëåíèå%: (.+%. Îòïðàâèë%: .+%[%d+%] Òåë%. %d+)')
+	if replaceAdd.v == true and text:find('ÃŽÃ¡ÃºÃ¿Ã¢Ã«Ã¥Ã­Ã¨Ã¥%: .+%. ÃŽÃ²Ã¯Ã°Ã Ã¢Ã¨Ã«%: .+%[%d+%] Ã’Ã¥Ã«%. %d+') then
+		local Add = text:match('ÃŽÃ¡ÃºÃ¿Ã¢Ã«Ã¥Ã­Ã¨Ã¥%: (.+%. ÃŽÃ²Ã¯Ã°Ã Ã¢Ã¨Ã«%: .+%[%d+%] Ã’Ã¥Ã«%. %d+)')
 		sampAddChatMessage('{78b169}AD: '..Add, 0x78b169)
 		return false
 	end
 
-	if replaceAdd.v == true and text:find('Îòðåäàêòèðîâàë ñîòðóäíèê ÑÌÈ %[ .+ %] %: .+%[%d+%]') and replaceAdd.v == true then
+	if replaceAdd.v == true and text:find('ÃŽÃ²Ã°Ã¥Ã¤Ã ÃªÃ²Ã¨Ã°Ã®Ã¢Ã Ã« Ã±Ã®Ã²Ã°Ã³Ã¤Ã­Ã¨Ãª Ã‘ÃŒÃˆ %[ .+ %] %: .+%[%d+%]') and replaceAdd.v == true then
 		return false
 	end
 end
@@ -325,14 +325,14 @@ end
 function imgui.Hint(text, delay, action)
     if imgui.IsItemHovered() then
         if go_hint == nil then go_hint = os.clock() + (delay and delay or 0.0) end
-        local alpha = (os.clock() - go_hint) * 5 -- ñêîðîñòü ïîÿâëåíèÿ
+        local alpha = (os.clock() - go_hint) * 5 -- Ã±ÃªÃ®Ã°Ã®Ã±Ã²Ã¼ Ã¯Ã®Ã¿Ã¢Ã«Ã¥Ã­Ã¨Ã¿
         if os.clock() >= go_hint then
 		    imgui.PushStyleVar(imgui.StyleVar.WindowPadding, imgui.ImVec2(10, 10))
 		    imgui.PushStyleVar(imgui.StyleVar.Alpha, (alpha <= 1.0 and alpha or 1.0))
 		        imgui.PushStyleColor(imgui.Col.PopupBg, imgui.GetStyle().Colors[imgui.Col.PopupBg])
 		            imgui.BeginTooltip()
 		            imgui.PushTextWrapPos(450)
-		            imgui.TextColored(imgui.GetStyle().Colors[imgui.Col.ButtonActive], fa.ICON_FA_INFO_CIRCLE..u8' Ïîäñêàçêà:')
+		            imgui.TextColored(imgui.GetStyle().Colors[imgui.Col.ButtonActive], fa.ICON_FA_INFO_CIRCLE..u8' ÃÃ®Ã¤Ã±ÃªÃ Ã§ÃªÃ :')
 		            imgui.TextUnformatted(text)
 		            if action ~= nil then
 		            	imgui.TextColored(imgui.GetStyle().Colors[imgui.Col.TextDisabled], '\n'..fa.ICON_FA_SHARE..' '..action)
@@ -391,18 +391,18 @@ end
 
 function calc(params)
     if params == '' then
-        sampAddChatMessage(tag.. 'Èñïîëüçîâàíèå: /calc [ïðèìåð]', mc)
+        sampAddChatMessage(tag.. 'ÃˆÃ±Ã¯Ã®Ã«Ã¼Ã§Ã®Ã¢Ã Ã­Ã¨Ã¥: /calc [Ã¯Ã°Ã¨Ã¬Ã¥Ã°]', mc)
     else
         local func = load('return ' .. params)
         if func == nil then
-            sampAddChatMessage(tag.. 'Îøèáêà.', mc)
+            sampAddChatMessage(tag.. 'ÃŽÃ¸Ã¨Ã¡ÃªÃ .', mc)
         else
             local bool, res = pcall(func)
             if bool == false or type(res) ~= 'number' then
-                sampAddChatMessage(tag.. 'Îøèáêà.', mc)
+                sampAddChatMessage(tag.. 'ÃŽÃ¸Ã¨Ã¡ÃªÃ .', mc)
 
             else
-                sampAddChatMessage(tag.. 'Ðåçóëüòàò: ' .. res, mc)
+                sampAddChatMessage(tag.. 'ÃÃ¥Ã§Ã³Ã«Ã¼Ã²Ã Ã²: ' .. res, mc)
             end
         end
     end
