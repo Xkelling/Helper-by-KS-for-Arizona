@@ -277,7 +277,8 @@ function imgui.OnDrawFrame()
 					cfg.MessageHook.ColorTag = ColorTag.v
 					inicfg.save(cfg, 'Helper KerSoft.ini') end
 				imgui.SameLine()
-				imgui.TextQuestion(u8"Обязательно вводить цвет в формате: {цвет}\nПример: {FFFFFF}")
+				imgui.Text(fa.ICON_FA_QUESTION_CIRCLE)
+				imgui.Hint(u8"Обязательно вводить цвет в формате: {цвет}\nПример: {FFFFFF}")
 			end
 
 			if replaceVipTag.v == true then
